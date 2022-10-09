@@ -5,8 +5,8 @@ from postgres_conn import pg_conn
 db = pg_conn()
 
 # api_key = "1bd1e3119459aa11d5f1d2c9a8cce932c1affe9ad397e9fd4e3bcb79f9e87a12"
-api_key = "9e17d9cd2d36e9e441b07ae9798e0307b7932f66c354402068e6a29c3ee02e29"
-# api_key = "949b34bed2aa1f1c7b2146ecbc84c78d1411ae9d309c75fa02f27702d861572f"
+# api_key = "9e17d9cd2d36e9e441b07ae9798e0307b7932f66c354402068e6a29c3ee02e29"
+api_key = "949b34bed2aa1f1c7b2146ecbc84c78d1411ae9d309c75fa02f27702d861572f"
 
 
 def get_tickers(company_name: str):
@@ -27,9 +27,12 @@ def get_company_details(tckr: str):
     more details on: https://sec-api.io/docs/mapping-api/map-ticker-to-company-details """
     api_endpoint = "https://api.sec-api.io/mapping"
     api_url = api_endpoint + "/ticker/^" + tckr + "$?token=" + api_key
-    response = requests.get(api_url)
-    dct = response.json()[0]
-    # print(dct)
+    try:
+        response = requests.get(api_url)
+        dct = response.json()[0]
+    except Exception as err:
+        print(err)
+
     return dct
 
 
