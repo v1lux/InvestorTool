@@ -4,10 +4,10 @@
     <div >
         <table  class="company_details">
             <tr>
-                <td><p>Company name:&nbsp;</p></td><td><p><b>{{detailed_information['name']}}</p></b></td>
+                <td><p>Company name:&nbsp;</p></td><td><p><b>{{detailed_information['name']}}</b></p></td>
                 <td>&nbsp;
                     <div>
-                        <form  method = "post">
+                        <form name="add_to_watchlist" action="/watchlist/"  method = "post">
                             <input type="button" id='sql' name="insert_sql" value="Add to Watchlist">
                         </form>
                     </div>

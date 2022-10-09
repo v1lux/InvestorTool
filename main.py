@@ -1,8 +1,11 @@
+import psycopg2
 from flask import Flask, render_template, request, redirect, url_for
 from module import get_company_details, get_10k_url_by_ticker, get_risk_section, get_tickers
+from postgres_conn import pg_conn
+
 
 app = Flask('Investor Tool')
-
+db = pg_conn()
 
 # ticker = 'IBM'
 # https://www.sec.gov/files/company_tickers.json
@@ -37,7 +40,12 @@ def search():
 
 @app.route('/watchlist/')
 def watchlist():
-    return render_template('watchlist.html')
+    with db:
+        query = """select * from "public"."InvestorTool" as IT """
+        crs = db.cursor()
+        crs.execute(query)
+        info = crs.fetchall()
+    return render_template('watchlist.html', data=info, title="Watchlist")
 
 
 if __name__ == '__main__':
