@@ -1,0 +1,39 @@
+{% extends "layouts/layout.html" %}
+{% block content %}
+
+    <div >
+        <table  class="company_details">
+            <tr>
+                <td><p>Company name:&nbsp;</p></td><td><p><b>{{detailed_information['name']}}</p></b></td>
+                <td>&nbsp;
+                    <div>
+                        <form  method = "post">
+                            <input type="button" id='sql' name="insert_sql" value="Add to Watchlist">
+                        </form>
+                    </div>
+                </td>
+             </tr>
+            <tr>
+                <td><p>Ticker:&nbsp;</p></td><td><p>{{detailed_information['ticker']}}</p></td>
+             </tr>
+            <tr>
+                <td><p>Exchange:&nbsp;</p></td><td><p>{{detailed_information['exchange']}}</p></td>
+             </tr>
+            <tr>
+                <td><p>Industry:&nbsp;</p></td><td><p>{{detailed_information['industry']}}</p></td>
+             </tr>
+            <tr>
+                <td><p>Location:&nbsp;</p></td><td><p>{{detailed_information['location']}}</p></td>
+             </tr>
+        </table>
+        <br>
+        <hr>
+        <a href="{{annual_report_URL}}"><p>Latest Annual Report </p></a>
+        <hr>
+
+        <h3>Extracted risk factors:</h3>
+        <br>
+        {{risk | safe}}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "layouts/layout.html" %}
+{% block content %}
+
+
+    <div >
+        <!-- <hr class="new"> -->
+        <p class="big">Please enter the company ticker (e.g. TSLA, IBM, AAPL)</p>
+        <p class="big"></p>
+        <form name="get_info" action="/search/" method="post">
+            <input type="text" name="ticker" placeholder="ticker" value="{{ticker}}"><br><br>
+            <input type="submit" value="Generate report">
+        </form>
+    </div>
+    <hr>
+    <div>
+        <p class="big"></p>
+        <p class="big">If you don't know the ticker, please enter the company name:</p>
+        <form name="get_company_ticker" action="/home/" method="post">
+            <input type="text" name="get_ticker" placeholder="company name" value="{{search_ticker}}"><br><br>
+            <input type="submit" value="Search company">
+        </form>
+    </div>
+    <div>
+        {% if search_hits %}
+        <table  class="ticker_table">
+            <tr>
+                <th>Company Name</th>
+                <th>Ticker</th>
+             </tr>
+            {% for hit in search_hits %}
+                <tr>
+                    <td>{{hit[0]}}&nbsp;</td><td>{{hit[1]}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>No searches yet</p>
+        {% endif %}
+    </div>
+    <hr>
+
+
+{% endblock content %}

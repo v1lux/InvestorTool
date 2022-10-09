@@ -1,0 +1,41 @@
+h3 {
+    font-size: 30px;
+    line-height: 32px;
+    font-family: Arial;
+
+    font-style: bold;
+    margin-bottom: 10px;
+    color: #00308F;
+   }
+h6 {
+    font-size: 14px;
+    line-height: 18px;
+    font-style: italic;
+    margin-bottom: 25px;
+    color: #FF7F50;
+   }
+
+div {
+    width: 80%;
+    }
+
+.bg_yellow {
+        background-color: #FFFFE0;
+        }
+
+hr.new {
+       border: 1px dashed #00308F;
+       }
+
+p {
+    font-family: Helvetica;
+  }
+
+a {
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+.arial {
+        font-family: Arial
+       }

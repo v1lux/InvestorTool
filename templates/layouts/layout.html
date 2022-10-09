@@ -1,0 +1,18 @@
+<html>
+<head>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+    <script
+        src="{{ url_for('static', filename='it.js') }}">
+    </script>
+</head>
+<body class=" bg_yellow">
+<div class="title"><h3>Investor Tool</h3></div>
+    <a class = "arial" href="/">Home</a><br/>
+    <a class = "arial" href="/watchlist/">Watchlist</a><br/>
+    <hr/>
+    {% block content %}{% endblock %}
+    <hr/>
+</body>
+</html>
