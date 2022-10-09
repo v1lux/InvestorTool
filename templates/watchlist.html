@@ -1,38 +1,25 @@
 {% extends "layouts/layout.html" %}
 {% block content %}
-    <H2>Watchlist</H2>
+    <H2 class="arial">Watchlist:</H2>
     <div>
-        <p>
-            {{ data }}
-        </p>
-    </div>
     <table>
+        <tr class="arial">
+            <th>ID</th><th>Company name</th><th>Ticker</th><th>Exchange</th><th>Industry</th>
+            <th>Company location</th><th>File URL</th>
+        </tr>
+        {% for company in data %}
         <tr>
+            {% for c in company %}
             <td align="left" valign="top">
-            <p>Company no. 1: </p>
-                <hr>
+                {% if c is string and (c[-5:] == ".html") %}
+                <a href="http://127.0.0.1:5000/watchlist/{{ c }}">{{ c }}</a>
+                {% else %}
+                <p>{{ c }}</p>
+                {% endif %}
             </td>
-            <td align="left" valign="top" colspan=2>
-            <p>Details </p>
-            </td>
+            {% endfor %}
         </tr>
-        <tr>
-            <td align="left" valign="top">
-             <p>Company no. 2: </p>
-                <hr>
-            </td>
-            <td align="left" valign="top">
-            <p>Details</p>
-            </td>
-        </tr>
-            <td align="left" valign="top">
-             <p>Company no. 3: </p>
-                <hr>
-            </td>
-            <td align="left" valign="top">
-            <p>Details</p>
-            </td>
-        </tr>
-
+        {% endfor %}
     </table>
+    </div>
 {% endblock content %}

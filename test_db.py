@@ -17,3 +17,5 @@ with db:
 
 # query = """INSERT INTO "public"."InvestorTool" (company_name, ticker, exchange, industry, company_location,file_url)
 # VALUES ('%s','%s', '%s', '%s', '%s', '%s')"""
+
+

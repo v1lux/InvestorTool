@@ -1,6 +1,8 @@
 import requests
 from sec_api import QueryApi, ExtractorApi
+from postgres_conn import pg_conn
 
+db = pg_conn()
 
 # api_key = "1bd1e3119459aa11d5f1d2c9a8cce932c1affe9ad397e9fd4e3bcb79f9e87a12"
 api_key = "9e17d9cd2d36e9e441b07ae9798e0307b7932f66c354402068e6a29c3ee02e29"
@@ -55,11 +57,29 @@ def get_risk_section(tckr: str):
     url = get_10k_url_by_ticker(tckr)
     risk_section = extractor_api.get_section(url, "1A", "html")
     # print(risk_section)
-    path = f"risk_reports/{tckr}_risk.html"
-    with open(path, 'w') as f:
-        f.write(risk_section)
+    # path = f"risk_reports/{tckr}_risk.html"
+    # with open(path, 'w') as f:
+    #     f.write(risk_section)
     return risk_section
 
 
-def add_to_watchlist():
-    pass
+def insert_to_db(tckr: str):
+    d = get_company_details(tckr)
+    file_path = f"watchlist/{tckr}.html"
+    file_url = f"{tckr}.html"
+    risk_section = get_risk_section(tckr)
+    with open(file_path, 'w') as f:
+        f.write(risk_section)
+
+    with db:
+        crs = db.cursor()
+        query = """INSERT INTO "public"."InvestorTool" (company_name,ticker,exchange,industry,company_location,file_url) 
+        VALUES (%s, %s, %s, %s, %s, %s)"""
+        crs.execute(query, (d['name'], d['ticker'], d['exchange'], d['industry'], d['location'], file_url))
+
+
+def del_from_db(tckr: str):
+    with db:
+        crs = db.cursor()
+        query = """delete from "public"."InvestorTool" where ticker = %s"""
+        crs.execute(query, (tckr,))

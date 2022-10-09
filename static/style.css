@@ -32,10 +32,16 @@ p {
   }
 
 a {
-    font-size: 11px;
-    line-height: 13px;
+    font-size: 14px;
+    line-height: 16px;
   }
 
 .arial {
         font-family: Arial
        }
+
+table, th, td {
+        border: 1px solid black;
+        padding: 5px;
+      }
+

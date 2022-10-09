@@ -7,8 +7,8 @@
                 <td><p>Company name:&nbsp;</p></td><td><p><b>{{detailed_information['name']}}</b></p></td>
                 <td>&nbsp;
                     <div>
-                        <form name="add_to_watchlist" action="/watchlist/"  method = "post">
-                            <input type="button" id='sql' name="insert_sql" value="Add to Watchlist">
+                        <form name="add_to_watchlist" action="/add/"  method = "post">
+                            <button name="insert_sql" value="{{detailed_information['ticker']}}">Add to Watchlist</button>
                         </form>
                     </div>
                 </td>
