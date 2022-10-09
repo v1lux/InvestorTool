@@ -1,2 +1,2 @@
-# Investor_tool
+# InvestorTool
 python project
